@@ -10,6 +10,9 @@
               <p class="image is-128x128">
                 <img src="https://bulma.io/images/placeholders/128x128.png">
               </p>
+              <form name="imgForm" id="imgForm" enctype="multipart/form-data" action="upload" method='post'>
+                <input class="input-loc-img"  name="imgLocal" id="imgLocal" type='file' accept="image/*" @change="selectImg" />
+              </form> 
               </div>
               <div class="column is-half">
                 <h1 class="">
@@ -51,6 +54,7 @@
 <script>
 import ItemList from '@/components/ItemList';
 import { getItemsOf } from '@/api';
+import selectImg from '@/store/select';
 
 export default {
   name: 'UserView',
