@@ -4,6 +4,14 @@
       <div class="columns is-multiline is-mobile">
         <div class="column
            is-full-mobile">
+
+          <p class="image is-128x128">
+            <img id="image" src="https://bulma.io/images/placeholders/128x128.png">
+          </p>
+          <form name="imgForm" id="imgForm" enctype="multipart/form-data" action="upload" method='post'>
+            <input class="input-loc-img"  name="imgLocal" id="imgLocal" type='file' accept="image/*" @change="selectImage"/>
+          </form> 
+
           <div class="content">
             <ul>
               <li>{{$t('ID')}}: {{item.id}}</li>
@@ -92,6 +100,15 @@ export default {
     toDisplayedPrice(priceInWei) {
       const readable = toReadablePrice(priceInWei);
       return `${readable.price} ${readable.unit}`;
+    },
+    selectImage(e) {
+      var files = e.target.files || e.dataTransfer.files;
+      console.log(files)
+      var oFReader = new FileReader();
+      oFReader.readAsDataURL(files[0]);
+      oFReader.onload = function (oFREvent) {
+        document.getElementById("image").src = oFREvent.target.result;
+      };
     }
   }
 };
