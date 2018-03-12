@@ -6,7 +6,7 @@
            is-full-mobile">
 
           <p class="image is-128x128">
-            <img id="image" src="https://bulma.io/images/placeholders/128x128.png">
+            <img id="image" style="width: 128px; height: 128px; border-color: #cfcfcf; border-style: solid; border-width: 1px;">
           </p>
           <form name="imgForm" id="imgForm" enctype="multipart/form-data" action="upload" method='post'>
             <input class="input-loc-img"  name="imgLocal" id="imgLocal" type='file' accept="image/*" @change="selectImage"/>
@@ -63,6 +63,10 @@ export default {
   name: "item-view",
 
   data: () => ({}),
+
+  mounted: function() {
+    document.getElementById("image").src = "https://bulma.io/images/placeholders/128x128.png";
+  },
 
   computed: {
     itemId() {
