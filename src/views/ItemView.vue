@@ -58,6 +58,7 @@
 <script>
 import { buyItem } from "@/api";
 import { toReadablePrice } from "@/util";
+import { setNextPrice } from "@/api";
 
 export default {
   name: "item-view",

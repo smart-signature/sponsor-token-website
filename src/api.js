@@ -131,6 +131,10 @@ export const setGg = async (id, str) => {
   return str;
 };
 
+export const save2backend = async (p) => {
+  return [];
+}
+
 // 获取此卡片的推荐nextPrice，需要和卡片blockchain上的nextPrice进行比较，选择较大的创建交易
 export const getNextPrice = async (id, time = 0) => {
   if (!isInit) {

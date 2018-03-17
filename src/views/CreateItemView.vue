@@ -56,7 +56,7 @@
                 <p class="control">
                   <input class="input"
                         type="number"
-                        v-model="ftoken"
+                        v-model="parentId"
                         placeholder="请输入父token的编号">
                 </p>
               </div>
@@ -66,14 +66,14 @@
                 <p class="control">
                   <input class="input"
                         type="text"
-                        v-model="Tname"
+                        v-model="tName"
                         placeholder="请输入Token的名称">
                 </p>
               </div>
 
               <label class="label">Token 简介</label>
               <div class="field ">
-                <textarea class="textarea" placeholder="e.g. Hello world"></textarea>
+                <textarea class="textarea" placeholder="e.g. Hello world" v-model="tDescription"></textarea>
               </div>
               <div class="field is-grouped">
                 <div class="control">
@@ -94,6 +94,7 @@
 
 <script>
 import { createToken } from "@/api";
+import { save2backend } from "@/api";
 
 export default {
   name: "item-view",
@@ -102,7 +103,9 @@ export default {
     price: null,
     frozen1: null,
     frozen2: null,
-    parentId: null
+    parentId: null,
+    tName: null,
+    tDescription:null
   }),
 
   computed: {},
@@ -120,6 +123,11 @@ export default {
       })
         .then(txHash => {
           alert("成功了，一会刷新. txHash: " + txHash);
+          save2backend({
+            tDescription: this.tDescription,
+            tName: this.tName
+          });
+
         })
         .catch(e => {
           alert("出错了.");
