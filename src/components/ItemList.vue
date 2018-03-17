@@ -22,6 +22,8 @@
                 </router-link>
               </li>
               <li>{{$t('Current Price')}}: {{toDisplayedPrice(item.price)}}</li>
+              <li>{{$t('Token Name')}}:{{item.title}}</li>
+              <li>{{$t('Token Description')}}:{{item.description}}</li>
             </ul>
           </div>
         </div>

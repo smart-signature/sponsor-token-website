@@ -40,7 +40,7 @@
                 <p class="control is-expanded">
                   <input class="input "
                         type="number"
-                        v-model="frozen1"
+                        v-model="frozen2"
                         placeholder="请输入冻结的时间">
                 </p>
                 <p class="control">
@@ -127,9 +127,10 @@ export default {
         .then(txHash => {
           alert("成功了，一会刷新. txHash: " + txHash);
           //const me = await api.getMe();
-          
+          debugger;
           save2backend({
             owner: this.$store.state.me.address,
+            txHash: txHash,
             //price : this.price,
             //parentId:this.parentId,
             description: this.tDescription,
