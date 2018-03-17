@@ -141,13 +141,13 @@ export const save2backend = async (p) => {
       .type('json')
       .accept('json')
       .send({
-            owner: this.owner,
+            owner: p.owner,
             imageurl: "xxx",
-            
+
             //price : this.price,
             //parentId:this.parentId,
-            description: this.description,
-            title: this.title
+            description: p.description,
+            title: p.title
           });
     // update store
     await init();
