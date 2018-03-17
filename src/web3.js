@@ -7,5 +7,10 @@ const web3 = web3Provider
   : new Web3(new Web3.providers.HttpProvider(config.defaultNetwork.rpc));
 
 web3.eth.defaultAccount = web3.eth.accounts[0];
+web3.eth.getTransactionReceiptMined = require("getTransactionReceiptMined.js");
 
 export default web3;
+
+
+
+

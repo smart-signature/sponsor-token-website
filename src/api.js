@@ -132,7 +132,25 @@ export const setGg = async (id, str) => {
 };
 
 export const save2backend = async (p) => {
-  return [];
+  console.log(p);
+  debugger;
+
+  await request
+  .post('http://localhost:5000/api/data')
+      
+      .type('json')
+      .accept('json')
+      .send({
+            owner: this.owner,
+            imageurl: "xxx",
+            
+            //price : this.price,
+            //parentId:this.parentId,
+            description: this.description,
+            title: this.title
+          });
+    // update store
+    await init();
 }
 
 // 获取此卡片的推荐nextPrice，需要和卡片blockchain上的nextPrice进行比较，选择较大的创建交易

@@ -95,6 +95,7 @@
 <script>
 import { createToken } from "@/api";
 import { save2backend } from "@/api";
+import { getMe} from "@/api";
 
 export default {
   name: "item-view",
@@ -115,6 +116,8 @@ export default {
 
   methods: {
     onSubmit() {
+      //console.log(this.$store.state.me);
+      //debugger;
       createToken({
         price: this.price,
         frozen1: this.frozen1,
@@ -123,9 +126,14 @@ export default {
       })
         .then(txHash => {
           alert("成功了，一会刷新. txHash: " + txHash);
+          //const me = await api.getMe();
+          
           save2backend({
-            tDescription: this.tDescription,
-            tName: this.tName
+            owner: this.$store.state.me.address,
+            //price : this.price,
+            //parentId:this.parentId,
+            description: this.tDescription,
+            title: this.tName
           });
 
         })
