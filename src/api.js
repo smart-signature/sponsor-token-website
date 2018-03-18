@@ -139,7 +139,7 @@ export const save2backend = async(p) => {
   web3.eth.getTransactionReceiptMined(txnHash, 500).then(async function(receipt) {
     var tokenid = await getTotal();
     tokenid = tokenid-1;
-    //debugger;
+    alert('Transaction is mined.');
     await request
       .post('http://localhost:5000/api/data')
 

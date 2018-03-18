@@ -32,7 +32,7 @@ export default {
   methods: {
     clickList(data) {
         var w = window.open('about:blank');
-        var url = "https://etherscan.io/tx/" + data.hash;
+        var url = "https://ropsten.etherscan.io/tx/" + data.hash;
         w.location.href = url;
     },
     overList() {
@@ -40,7 +40,8 @@ export default {
     }
   },
   mounted: function() {
-    this.$http.get('https://api.etherscan.io/api?module=account&address=0x8d12a197cb00d4747a1fe03395095ce2a5cc6819&offset=100&page=1&sort=asc&apikey=FYFY6687BY19QA9TEF7NU2NAHQW6AFS5AN&action=txlist').then((response) => {
+    // this.$http.get('https://api.etherscan.io/api?module=account&address=0x8d12a197cb00d4747a1fe03395095ce2a5cc6819&offset=100&page=1&sort=asc&apikey=FYFY6687BY19QA9TEF7NU2NAHQW6AFS5AN&action=txlist').then((response) => {
+      this.$http.get('http://api-ropsten.etherscan.io/api?module=account&address=0x227D54dDe571751dc95387832E4E43E640440116&offset=100&page=1&sort=asc&apikey=FYFY6687BY19QA9TEF7NU2NAHQW6AFS5AN&action=txlist').then((response) => {
       var result = JSON.parse(response.bodyText).result
       console.log(result)
       var res = [];
