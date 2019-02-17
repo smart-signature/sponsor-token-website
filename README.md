@@ -1,13 +1,13 @@
-# sponsor-token-website
+# smart-signature-website
 
 > A Vue.js project
 
 ## Build Setup
-please use yarn
-
+PLEASE USE YARN
 ``` bash
 # install dependencies
-npm install
+yarn
+# or u can use npm install
 
 # serve with hot reload at localhost:8080
 npm run dev
