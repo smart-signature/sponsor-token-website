@@ -43,7 +43,7 @@ export default {
 
   computed: {
     items() {
-      return this.itemIds.map(id => {
+      return this.itemIds.map ( (id) => {
         const item = this.$store.state.items[id];
         return item || { id };
       });
@@ -61,14 +61,12 @@ export default {
 
   watch: {
     itemIds(newItemIds) {
-      newItemIds.forEach(itemId => {
-        this.$store.dispatch("FETCH_ITEM", itemId);
+      newItemIds.forEach ( (itemId) => {
+        this.$store.dispatch('FETCH_ITEM', itemId);
       });
     },
-  }
+  },
 };
 </script>
- <style scoped>
-
+<style scoped>
 </style>
-

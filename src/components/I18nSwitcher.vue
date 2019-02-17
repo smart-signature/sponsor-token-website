@@ -18,12 +18,11 @@ export default {
   computed: {
     locale: {
       get() {
-        const locale = this.$store.state.locale;
+        const { locale } = this.$store.state.locale;
         const i18n = this.$config ? this.$config.i18n : [];
         const lang = i18n.find(
-          item =>
-            item.locale === locale ||
-            item.aliases.some(alias => alias === locale),
+          item => item.locale === locale
+            || item.aliases.some(alias => alias === locale),
         );
         return lang ? lang.locale : null;
       },

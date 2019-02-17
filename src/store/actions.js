@@ -50,7 +50,7 @@ export default {
   increment({ commit }) {
     commit('increment');
   },
-  incrementAsync({ commit }, { amount }) {
+  incrementasync ({ commit }, { amount }) {
     setTimeout(() => {
       commit('increment', amount);
     }, 1000);

@@ -48,4 +48,3 @@ export const i18n = [
     aliases: ['jp'],
   },
 ];
-

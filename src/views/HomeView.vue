@@ -12,7 +12,9 @@
     </section>
     <div class="box cta">
     <p class="has-text-centered">
-      <span class="tag is-primary">New</span> Smart Signature version @beta 0.1 now is online. You can test the new features of creating tokens for yourself. 
+      <span class="tag is-primary">New</span>
+      Smart Signature version @beta 2.0 now is online.
+      You can test the new features of creating tokens for yourself.
     </p>
   </div>
   <div class="container">
@@ -94,8 +96,7 @@
           Attach your token <br>
           anywhere
         </h3>
-    
-        <div class="box" id="development-expertise" >
+        <div class="box" id="development-expertise">
           <div class="card-content">
             <span class="icon has-text-danger">
               <img class="image-box border-shadow " src="../../static/img/search.svg" alt="">
@@ -120,6 +121,4 @@
 
   </section>
 </section>
-
 </template>
-

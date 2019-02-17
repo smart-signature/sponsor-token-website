@@ -73,7 +73,9 @@
 
               <label class="label">Token 简介</label>
               <div class="field ">
-                <textarea class="textarea" placeholder="e.g. Hello world" v-model="tDescription"></textarea>
+                <textarea class="textarea" placeholder="e.g. Hello world"
+                  v-model="tDescription">
+                </textarea>
               </div>
               <div class="field is-grouped">
                 <div class="control">
@@ -96,18 +98,18 @@
 import { createToken, save2backend } from '@/api';
 
 export default {
-  name: "item-view",
+  name: 'item-view',
   data: () => ({
     price: null,
     frozen1: null,
     frozen2: null,
     parentId: null,
     tName: null,
-    tDescription:null,
+    tDescription: null,
   }),
 
   computed: {},
-  async created() {},
+  // async created() {},
 
   watch: {},
 
@@ -121,21 +123,20 @@ export default {
         frozen2: this.frozen2,
         parentId: this.parentId,
       })
-        .then(txHash => {
-          alert('成功了，一会刷新. txHash: ' + txHash);
+        .then( (txHash) => {
+          alert(`成功了，一会刷新. txHash: ${txHash}`);
           // const me = await api.getMe();
           debugger;
           save2backend({
             owner: this.$store.state.me.address,
-            txHash: txHash,
+            txHash,
             // price : this.price,
             // parentId:this.parentId,
             description: this.tDescription,
             title: this.tName,
           });
-
         })
-        .catch(e => {
+        .catch((e) => {
           alert('出错了.');
           console.log(e);
         });

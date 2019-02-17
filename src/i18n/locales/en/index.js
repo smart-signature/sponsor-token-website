@@ -1,3 +1,4 @@
+/* eslint-disable */
 const FAQs_CONTENT = require('raw-loader!./faq.html');
 const PRIVACY_CONTENT = require('raw-loader!./privacy.html');
 const TERMS_CONTENT = require('raw-loader!./terms.html');
@@ -5,11 +6,11 @@ const TERMS_CONTENT = require('raw-loader!./terms.html');
 module.exports = {
   header: {
     nav: {
-      siteName: "Smart Signature",
-      explore: "Explore",
-      createItem: "Create Item",
-      myPage: "My Page",
-      Transactions: "Transactions",
+      siteName: 'Smart Signature',
+      explore: 'Explore',
+      createItem: 'Create Item',
+      myPage: 'My Page',
+      Transactions: 'Transactions',
     },
   },
   'My Cards': 'My Cards',
