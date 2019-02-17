@@ -3,6 +3,7 @@
 > A Vue.js project
 
 ## Build Setup
+please use yarn
 
 ``` bash
 # install dependencies
