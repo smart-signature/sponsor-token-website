@@ -85,9 +85,8 @@ export default {
     },
     item() {
       // debugger;
-
       return this.$store.state.items[this.itemId];
-    }
+    },
   },
   async created() {
     // debugger;
@@ -103,7 +102,7 @@ export default {
       }
       const buyPrice = this.item.price.times(rate).toFixed(0);
       buyItem(this.itemId, buyPrice)
-        .then( (txHash) => {
+        .then((txHash) => {
           alert(this.$t('BUY_SUCCESS_MSG') + `txHash: ${txHash}`);
           setNextPrice(this.itemId, buyPrice);
         })

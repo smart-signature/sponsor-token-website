@@ -123,7 +123,7 @@ export default {
         frozen2: this.frozen2,
         parentId: this.parentId,
       })
-        .then( (txHash) => {
+        .then((txHash) => {
           alert(`成功了，一会刷新. txHash: ${txHash}`);
           // const me = await api.getMe();
           debugger;

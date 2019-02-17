@@ -296,7 +296,7 @@ export const getNetwork = async () => {
 };
 
 export const createToken = async ({
-  price, frozen1, frozen2, parentId
+  price, frozen1, frozen2, parentId,
 }) => (
   new Promise((resolve, reject) => {
     sponsorTokenContract.issueToken(web3.toWei(Number(price), 'ether'), frozen1, frozen2, parentId, {
