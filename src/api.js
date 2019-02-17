@@ -1,6 +1,6 @@
 import Promise from 'bluebird';
 import Cookie from 'js-cookie';
-import { BigNumber } from 'bignumber.js';
+// import { BigNumber } from 'bignumber.js';
 import web3 from './web3.js';
 import * as config from '@/config';
 import request from 'superagent';
@@ -76,9 +76,7 @@ export const getGg = async(id, time = 0) => {
 
   const item = store.find(x => x.id === `${id}`);
 
-  if (item && item.str) {
-    return item.str;
-  }
+  if (item && item.str) { return item.str; }
 
   return '';
 };
@@ -154,13 +152,13 @@ export const save2backend = async(p) => {
         //price : this.price,
         //parentId:this.parentId,
         description: p.description,
-        title: p.title
+        title: p.title,
       });
     // update store
     await init();
   });
 
-  //debugger;
+  // debugger;
 
 
 }
@@ -205,9 +203,7 @@ export const setNextPrice = async(id, priceInWei) => {
   const item = store.find(x => x.id === `${id}`);
 
   if (item) {
-    if (price <= item.nextPrice) {
-      return item.nextPrice;
-    }
+    if (price <= item.nextPrice) { return item.nextPrice; }
 
     // update request
     await request
@@ -244,71 +240,45 @@ export const setNextPrice = async(id, priceInWei) => {
   return price * 1.1;
 };
 
-
-
-
 export const getItem = async(id) => {
-  
-  //console.log('http://localhost:5000/api/data/tokenid/'+id);
+  // console.log('http://localhost:5000/api/data/tokenid/'+id);
   const response =  await request
-    .get('http://localhost:5000/api/data/tokenid/'+id)
+    .get('http://localhost:5000/api/data/tokenid/' + id)
     .type('json')
     .accept('json');
-  if (response.body) {
-    const exist = await Promise.promisify(sponsorTokenContract.tokenExists)(id);
-    if (!exist) return null;
-    const card = {};
-    const item = {
-      id,
-      name: card.name,
-      nickname: card.nickname,
-    };
-    [item.owner, item.creator, item.price, item.nextPrice] =
+  
+  const exist = await Promise.promisify(sponsorTokenContract.tokenExists)(id);
+  if (!exist) return null;
+  const card = {};
+  const item = {
+    id,
+    name: card.name,
+    nickname: card.nickname,
+  };
+  [item.owner, item.creator, item.price, item.nextPrice] =
     await Promise.promisify(sponsorTokenContract.allOf)(id);
-    //console.log(item.id);
-    // [[item.owner, item.price, item.nextPrice], item.estPrice] = await Promise.all([
-    //   Promise.promisify(sponsorTokenContract.allOf)(id),
-    //   getNextPrice(id)]);
-    // item.price = BigNumber.maximum(item.price, item.estPrice);
+  // console.log(item.id);
+  // [[item.owner, item.price, item.nextPrice], item.estPrice] = await Promise.all([
+  //   Promise.promisify(sponsorTokenContract.allOf)(id),
+  //   getNextPrice(id)]);
+  // item.price = BigNumber.maximum(item.price, item.estPrice);
+  
+  if (response.body) {
     item.description = response.body.description;
     item.title = response.body.title;
-    return item;
   } else {
-    const exist = await Promise.promisify(sponsorTokenContract.tokenExists)(id);
-    if (!exist) return null;
-    const card = {};
-    const item = {
-      id,
-      name: card.name,
-      nickname: card.nickname,
-    };
-    [item.owner, item.creator, item.price, item.nextPrice] =
-    await Promise.promisify(sponsorTokenContract.allOf)(id);
-    //console.log(item.id);
-    // [[item.owner, item.price, item.nextPrice], item.estPrice] = await Promise.all([
-    //   Promise.promisify(sponsorTokenContract.allOf)(id),
-    //   getNextPrice(id)]);
-    // item.price = BigNumber.maximum(item.price, item.estPrice);
     item.description = '';
     item.title = '';
-    return item;
   }
 
+  return item;
 };
-
-
-
-
-
-
-
-
 
 export const buyItem = (id, price) => new Promise((resolve, reject) => {
   sponsorTokenContract.buy(id, {
-      value: price, // web3.toWei(Number(price), 'ether'),
-      gas: 220000,
-      gasPrice: 1000000000 * 100,
+    value: price, // web3.toWei(Number(price), 'ether'),
+    gas: 220000,
+    gasPrice: 1000000000 * 100,
     },
     (err, result) => (err ? reject(err) : resolve(result)));
 });
@@ -330,7 +300,7 @@ export const isItemMaster = async(id) => {
 export const getItemsOf = async address => Promise.promisify(
   sponsorTokenContract.tokensOf)(address);
 
-export const getNetwork = async() => {
+export const getNetwork = async( ) => {
   const netId = await Promise.promisify(web3.version.getNetwork)();
   return config.network[netId];
 };
@@ -338,11 +308,11 @@ export const getNetwork = async() => {
 export const createToken = async({ price, frozen1, frozen2, parentId }) =>
   new Promise((resolve, reject) => {
     sponsorTokenContract.issueToken(web3.toWei(Number(price), 'ether'), frozen1, frozen2, parentId, {
-        // value: price, // web3.toWei(Number(price), 'ether'),
-        gas: 220000,
-        gasPrice: 1000000000 * 100,
-      },
-      (err, result) => (err ? reject(err) : resolve(result)));
+      // value: price, // web3.toWei(Number(price), 'ether'),
+      gas: 220000,
+      gasPrice: 1000000000 * 100,
+    },
+    (err, result) => (err ? reject(err) : resolve(result)));
   });
 
 export const getLocale = async() => (

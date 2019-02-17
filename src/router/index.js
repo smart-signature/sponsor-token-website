@@ -53,7 +53,7 @@ export default new Router({
     {
       name: 'Transaction',
       path: '/transaction',
-      component: TransactionView
-    }
+      component: TransactionView,
+    },
   ],
 });

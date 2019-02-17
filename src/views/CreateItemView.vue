@@ -93,20 +93,17 @@
 </template>
 
 <script>
-import { createToken } from "@/api";
-import { save2backend } from "@/api";
-import { getMe} from "@/api";
+import { createToken, save2backend } from '@/api';
 
 export default {
   name: "item-view",
-
   data: () => ({
     price: null,
     frozen1: null,
     frozen2: null,
     parentId: null,
     tName: null,
-    tDescription:null
+    tDescription:null,
   }),
 
   computed: {},
@@ -116,34 +113,34 @@ export default {
 
   methods: {
     onSubmit() {
-      //console.log(this.$store.state.me);
-      //debugger;
+      // console.log(this.$store.state.me);
+      // debugger;
       createToken({
         price: this.price,
         frozen1: this.frozen1,
         frozen2: this.frozen2,
-        parentId: this.parentId
+        parentId: this.parentId,
       })
         .then(txHash => {
-          alert("成功了，一会刷新. txHash: " + txHash);
-          //const me = await api.getMe();
+          alert('成功了，一会刷新. txHash: ' + txHash);
+          // const me = await api.getMe();
           debugger;
           save2backend({
             owner: this.$store.state.me.address,
             txHash: txHash,
-            //price : this.price,
-            //parentId:this.parentId,
+            // price : this.price,
+            // parentId:this.parentId,
             description: this.tDescription,
-            title: this.tName
+            title: this.tName,
           });
 
         })
         .catch(e => {
-          alert("出错了.");
+          alert('出错了.');
           console.log(e);
         });
-    }
-  }
+    },
+  },
 };
 </script>
  <style scoped>

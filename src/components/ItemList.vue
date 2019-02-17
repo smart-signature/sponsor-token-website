@@ -33,11 +33,11 @@
 </template>
 
 <script>
-import { toReadablePrice } from "@/util";
+import { toReadablePrice } from '@/util';
 
 export default {
-  name: "item-lists",
-  props: ["itemIds"],
+  name: 'item-lists',
+  props: ['itemIds'],
 
   data: () => ({}),
 
@@ -47,14 +47,14 @@ export default {
         const item = this.$store.state.items[id];
         return item || { id };
       });
-    }
+    },
   },
 
   methods: {
     toDisplayedPrice(priceInWei) {
       const readable = toReadablePrice(priceInWei);
       return `${readable.price} ${readable.unit}`;
-    }
+    },
   },
 
   created() {},
@@ -64,7 +64,7 @@ export default {
       newItemIds.forEach(itemId => {
         this.$store.dispatch("FETCH_ITEM", itemId);
       });
-    }
+    },
   }
 };
 </script>

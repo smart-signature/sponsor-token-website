@@ -1,4 +1,4 @@
- const FAQs_CONTENT = require('raw-loader!./faq.html');
+const FAQs_CONTENT = require('raw-loader!./faq.html');
 const PRIVACY_CONTENT = require('raw-loader!./privacy.html');
 const TERMS_CONTENT = require('raw-loader!./terms.html');
 
@@ -9,10 +9,9 @@ module.exports = {
       explore: "Explore",
       createItem: "Create Item",
       myPage: "My Page",
-      Transactions: "Transactions"
-    }
+      Transactions: "Transactions",
+    },
   },
-  CryptoHero: 'CryptoHero',
   'My Cards': 'My Cards',
   'Sign In': 'Sign In',
   Home: 'Home',
@@ -20,7 +19,7 @@ module.exports = {
   Owner: 'Owner',
   'Current Price': 'Current Price',
   Buy: 'Buy',
-  BirthdayGift: 'Birthday Tribute(HOT)',  
+  BirthdayGift: 'Birthday Tribute(HOT)',
   'Terms of Service': 'Terms',
   'Privacy Policy': 'Privacy',
   'Contact Us': 'Contact',

@@ -64,18 +64,18 @@
 </template>
 
 <script>
-import { mapState } from "vuex";
-import { getNetwork, getAnnouncements } from "@/api";
-import I18nSwitcher from "@/components/I18nSwitcher";
+// import { mapState } from "vuex";
+import { getNetwork /* , getAnnouncements */ } from '@/api';
+import I18nSwitcher from '@/components/I18nSwitcher';
 
 export default {
-  name: "Header",
+  name: 'Header',
   components: {
-    I18nSwitcher
+    I18nSwitcher,
   },
   data() {
     return {
-      network: {}
+      network: {},
     };
   },
   async created() {
