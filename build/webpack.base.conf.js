@@ -22,7 +22,7 @@ const createLintingRule = () => ({
 module.exports = {
   context: path.resolve(__dirname, '../'),
   entry: {
-    app: './src/main.js'
+    app: './src/index.js'
   },
   output: {
     path: config.build.assetsRoot,
@@ -73,6 +73,15 @@ module.exports = {
         options: {
           limit: 10000,
           name: utils.assetsPath('fonts/[name].[hash:7].[ext]')
+        }
+      },
+      {
+        test: /\.(html)$/,
+        use: {
+          loader: 'html-loader',
+          options: {
+            attrs: [':data-src']
+          }
         }
       }
     ]

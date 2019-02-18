@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <Header />
-
+    <router-link :to="{ name: 'Home' }">Home</router-link>
     <router-view class="container view"
                  :key="key"></router-view>
 
