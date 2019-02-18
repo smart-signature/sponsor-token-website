@@ -6,9 +6,9 @@ import VueLazyload from 'vue-lazyload';
 import VueResource from 'vue-resource';
 import * as config from '@/config';
 import App from './App';
-import store from './store';
-import router from './router';
 import i18n from './i18n';
+import router from './router';
+import store from './store';
 
 Vue.config.productionTip = false;
 
@@ -19,9 +19,9 @@ Vue.use(VueResource);
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
-  store,
   i18n,
   router,
+  store,
   components: { App },
   template: '<App/>',
 });
