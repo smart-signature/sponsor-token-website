@@ -1,5 +1,5 @@
 import Vue from 'vue';
-import Router from 'vue-router';
+import VueRouter from 'vue-router';
 
 import HomeView from '@/views/HomeView';
 import ExploreView from '@/views/ExploreView';
@@ -10,26 +10,14 @@ import LoginView from '@/views/LoginView';
 import RecentView from '@/views/RecentView';
 import TransactionView from '@/views/TransactionView';
 
-Vue.use(Router);
+Vue.use(VueRouter);
 
-export default new Router({
+export default new VueRouter({
   scrollBehavior: () => ({ y: 0 }),
   routes: [
-    {
-      name: 'Home',
-      path: '/',
-      component: HomeView,
-    },
-    {
-      name: 'Explore',
-      path: '/explore',
-      component: ExploreView,
-    },
-    {
-      name: 'Item',
-      path: '/item/:id(\\d+)',
-      component: ItemView,
-    },
+    { name: 'Home', path: '/', component: HomeView },
+    { name: 'Explore', path: '/explore', component: ExploreView },
+    { name: 'Item', path: '/item/:id(\\d+)', component: ItemView },
     {
       name: 'User',
       path: '/user/:address',
