@@ -1,3 +1,7 @@
+import { networks } from './network';
+
+export const network2 = networks;
+
 /* eslint-disable import/prefer-default-export */
 
 export const network = {

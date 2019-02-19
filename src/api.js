@@ -6,6 +6,22 @@ import request from 'superagent';
 import timeout from 'timeout-then';
 import sponsorTokenABI from './abi/sponsorToken.json';
 import web3 from './web3.js';
+
+import PriceFormatter from './priceFormatter';
+import ScatterJS from 'scatterjs-core';
+import ScatterEOS from 'scatterjs-plugin-eosjs';
+import Eos from 'eosjs';
+
+ScatterJS.plugins(new ScatterEOS());
+
+// api https://get-scatter.com/docs/api-create-transaction
+
+// @trick: use function to lazy eval Scatter eos, in order to avoid no ID problem.
+const eos = () => ScatterJS.scatter.eos(config.network2.eos, Eos, { expireInSeconds: 60 });
+const currentEOSAccount = () => ScatterJS.scatter.identity && ScatterJS.scatter.identity.accounts.find(x => x.blockchain === 'eos');
+
+
+
 // Sometimes, web3.version.network might be undefined,
 // as a workaround, use defaultNetwork in that case.
 const network = config.network[web3.version.network] || config.defaultNetwork;
@@ -295,6 +311,7 @@ export const getNetwork = async () => {
   return config.network[netId];
 };
 
+/*
 export const createToken = async ({
   price, frozen1, frozen2, parentId,
 }) => (
@@ -307,6 +324,7 @@ export const createToken = async ({
     (err, result) => (err ? reject(err) : resolve(result)));
   })
 );
+*/
 
 export const getLocale = async () => (
   Cookie.get('locale')
@@ -317,6 +335,29 @@ export const getLocale = async () => (
   ).toLowerCase()
 );
 
+
+
 export const setLocale = async (locale) => {
   Cookie.set('locale', locale, { expires: 365 });
 };
+
+
+export const createToken = ({
+    to,
+    memo = '', 
+    amount = 0,
+}) => {
+    return eos().transfer(
+	currentEOSAccount().name, 
+	to, 
+	amount
+	`0.1000 EOS`,
+	memo,
+    );
+};
+
+export const login = async () => {
+    const requiredFields = { accounts: [config.network2] };
+    return ScatterJS.scatter.getIdentity(requiredFields);
+   
+}
