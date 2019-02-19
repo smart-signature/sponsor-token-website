@@ -7,67 +7,57 @@
         <div class="container">
           <div class="box" style="width: 400px;">
             <div class="field is-horizen">
-              <label class="label">发行价</label>
+              <label class="label">creator_fee</label>
               <div class="field has-addons">
                 <p class="control is-expanded">
                     <input class="input"
                       type="number"
-                      v-model="price"
-                      placeholder="输入Token的发行价">
-                </p>
-                <p class="control">
-                  <a class="button is-static">
-                  eth
-                  </a>
+                      v-model="creator_fee"
+                      placeholder="Token的创建者抽成，0-1000">
                 </p>
               </div>
-              <label class="label">Frozen时间1</label>
+              <label class="label">ref_fee</label>
               <div class="field has-addons">
                 <p class="control is-expanded">
                   <input class="input"
                         type="number"
-                        v-model="frozen1"
-                        placeholder="请输入冻结的时间">
-                </p>
-                <p class="control">
-                  <a class="button is-static">
-                  s
-                  </a>
+                        v-model="ref_fee"
+                        placeholder="Token的传播者抽成，0-1000">
                 </p>
               </div>
-              <label class="label">Frozen时间2</label>
+              <label class="label">k</label>
               <div class="field has-addons">
                 <p class="control is-expanded">
                   <input class="input "
                         type="number"
-                        v-model="frozen2"
-                        placeholder="请输入冻结的时间">
-                </p>
-                <p class="control">
-                  <a class="button is-static">
-                  s
-                  </a>
+                        v-model="k"
+                        placeholder="Token的裂变系数，10-1000">
                 </p>
               </div>
 
               <!--<p class="help">This username is available</p>-->
-              <label class="label">父Token ID</label>
-              <div class="field ">
-                <p class="control">
+              <label class="label">price</label>
+              <div class="field has-addons ">
+                <p class="control is-expanded">
                   <input class="input"
                         type="number"
-                        v-model="parentId"
-                        placeholder="请输入父token的编号">
+                        v-model="price"
+                        placeholder="Token的价格，1000-10000000">
+                </p>
+		<p class="control">
+                  <a class="button is-static">
+                  0.0001 EOS
+                  </a>
                 </p>
               </div>
 
-              <label class="label">Token 名称</label>
+              <label class="label">start_time</label>
               <div class="field ">
                 <p class="control">
                   <input class="input"
                         type="text"
-                        v-model="tName"
-                        placeholder="请输入Token的名称">
+                        v-model="start_time"
+                        placeholder="请输入裂变开始时间，> now">
                 </p>
               </div>
 
@@ -83,6 +73,10 @@
                           @click="onSubmit">确认</button>
                 </div>
                 <div class="control">
+                  <button class="button is-link is-fullwidth"
+                          @click="login">login</button>
+                </div		
+                <div class="control">
                   <button class="button is-text">取消</button>
                 </div>
               </div>
@@ -95,7 +89,9 @@
 </template>
 
 <script>
-import { createToken, save2backend } from '@/api';
+import {login, createToken, save2backend } from '@/api';
+import Global from '@/Global.js';
+
 
 export default {
   name: 'item-view',
@@ -114,7 +110,9 @@ export default {
   watch: {},
 
   methods: {
+    /*
     onSubmit() {
+      
       // console.log(this.$store.state.me);
       // debugger;
       createToken({
@@ -140,6 +138,17 @@ export default {
           alert('出错了.');
           console.log(e);
         });
+    },
+    */
+    onSubmit() {
+      createToken({
+        //from:Global.scatterAccount.name,
+        to:'signature.bp',
+        //memo: `create ${this.creator_fee} ${this.ref_fee} ${this.k} ${this.price} ${this.start_time}`
+      });
+    },
+   login() {
+      login();
     },
   },
 };
